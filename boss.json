@@ -4,7 +4,9 @@
 	"version": "0.0.1",
 	"homepage": "https://github.com/MAPGSolutions/ComponentesMAPG/SDKComponentes",
 	"mainsrc": "./",
-	"projects": [],
+	"projects": [
+		"SDKComponentes.dproj"
+	],
 	"dependencies": {
 		"github.com/hashload/horse": "^1.7.7"
 	}
