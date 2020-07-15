@@ -5,7 +5,7 @@ interface
 uses
   DUnitX.TestFramework,
   Vcl.StdCtrls,
-  ValorPor;
+  DUnitX.Assert.Ex;
 
 type
 
@@ -51,7 +51,7 @@ type
 
 implementation
 
-uses DUnitX.Assert.Ex;
+uses ValorPor;
 
 var
   objValor: TValorPorExtenso;
