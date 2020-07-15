@@ -1,0 +1,11 @@
+{
+	"name": "SDKComponentes",
+	"description": "Um SDK de códigos úteis para o desenvolvimento de aplicativos desktop",
+	"version": "0.0.1",
+	"homepage": "https://github.com/MAPGSolutions/ComponentesMAPG/SDKComponentes",
+	"mainsrc": "./",
+	"projects": [],
+	"dependencies": {
+		"github.com/hashload/horse": "^1.7.7"
+	}
+}
