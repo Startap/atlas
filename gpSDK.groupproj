@@ -3,6 +3,9 @@
         <ProjectGuid>{8EA766EC-10D5-46F6-B458-174E230759D8}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
+        <Projects Include="Test_Runner.dproj">
+            <Dependencies/>
+        </Projects>
         <Projects Include="pkgSDKRuntime.dproj">
             <Dependencies/>
         </Projects>
@@ -14,6 +17,15 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
+    <Target Name="Test_Runner">
+        <MSBuild Projects="Test_Runner.dproj"/>
+    </Target>
+    <Target Name="Test_Runner:Clean">
+        <MSBuild Projects="Test_Runner.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Test_Runner:Make">
+        <MSBuild Projects="Test_Runner.dproj" Targets="Make"/>
+    </Target>
     <Target Name="pkgSDKRuntime">
         <MSBuild Projects="pkgSDKRuntime.dproj"/>
     </Target>
@@ -24,13 +36,13 @@
         <MSBuild Projects="pkgSDKRuntime.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="pkgSDKRuntime"/>
+        <CallTarget Targets="Test_Runner;pkgSDKRuntime"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="pkgSDKRuntime:Clean"/>
+        <CallTarget Targets="Test_Runner:Clean;pkgSDKRuntime:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="pkgSDKRuntime:Make"/>
+        <CallTarget Targets="Test_Runner:Make;pkgSDKRuntime:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

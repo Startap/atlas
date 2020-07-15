@@ -9,3 +9,4 @@ modules/
 # Ignore compiled and __history files
 Win32/
 __history/
+/CodeCoverage/*Result*

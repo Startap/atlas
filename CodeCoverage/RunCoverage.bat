@@ -1,0 +1,1 @@
+.\CodeCoverage.exe -e ..\Win32\Debug\Test_Runner.exe -m ..\Win32\Debug\Test_Runner.map -spf .\codigo_fonte.lst -uf .\units_teste.lst -od .\CodeCoverageResult\ -html -xml -xmllines
