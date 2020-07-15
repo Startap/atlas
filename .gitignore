@@ -1,5 +1,6 @@
 # Ignoring Boss .lock file (keep always up to date with main dependencies)
 boss-lock.json
+modules/
 
 # Ignoring Delphi local files
 *.local

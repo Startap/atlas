@@ -125,7 +125,7 @@ end;
 function TValorPorExtenso.TrataGrupo(const S: String): String;
 const
   Num1a19: array [1..19] of String = (
-    'UM', 'DOIS', 'TR�S', 'QUATRO', 'CINCO',
+    'UM', 'DOIS', 'TRÊS', 'QUATRO', 'CINCO',
     'SEIS', 'SETE', 'OITO', 'NOVE', 'DEZ',
     'ONZE', 'DOZE', 'TREZE', 'CATORZE', 'QUINZE',
     'DEZESSEIS', 'DEZESSETE', 'DEZOITO', 'DEZENOVE');
@@ -218,9 +218,9 @@ begin
     begin
       Result := TrataGrupo(Lst[I]);
       if StrToInt(Lst[I]) = 1 then
-        Result := Result + ' BILH�O'
+        Result := Result + ' BILHÃO'
       else
-        Result := Result + ' BILH�ES';
+        Result := Result + ' BILHÕES';
       Inc(I);
     end;
 
@@ -233,9 +233,9 @@ begin
           Result := Result + ', ';
         Result := Result + TrataGrupo(Lst[I]);
         if StrToInt(Lst[I]) = 1 then
-          Result := Result + ' MILH�O'
+          Result := Result + ' MILHÃO'
         else
-          Result := Result + ' MILH�ES';
+          Result := Result + ' MILHÕES';
       end;
       Inc(I);
     end;
@@ -288,9 +288,9 @@ begin
   finally
     // trata tipo texto
     if FTipoTexto = ttMaiuscula then
-      Result := AnsiUpperCase(Result)
+      Result := UpperCase(Result)
     else
-      Result := AnsiLowerCase(Result);
+      Result := LowerCase(Result);
     if Lst <> nil then
       Lst.Free;
   end;
