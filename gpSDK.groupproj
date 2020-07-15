@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{8EA766EC-10D5-46F6-B458-174E230759D8}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="pkgSDKPrincipal.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="D:\DelphiProjects\PrototipoSDK\modules\boss-ide\boss_ide.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="pkgSDKPrincipal">
+        <MSBuild Projects="pkgSDKPrincipal.dproj"/>
+    </Target>
+    <Target Name="pkgSDKPrincipal:Clean">
+        <MSBuild Projects="pkgSDKPrincipal.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pkgSDKPrincipal:Make">
+        <MSBuild Projects="pkgSDKPrincipal.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="boss_ide">
+        <MSBuild Projects="D:\DelphiProjects\PrototipoSDK\modules\boss-ide\boss_ide.dproj"/>
+    </Target>
+    <Target Name="boss_ide:Clean">
+        <MSBuild Projects="D:\DelphiProjects\PrototipoSDK\modules\boss-ide\boss_ide.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="boss_ide:Make">
+        <MSBuild Projects="D:\DelphiProjects\PrototipoSDK\modules\boss-ide\boss_ide.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="pkgSDKPrincipal;boss_ide"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="pkgSDKPrincipal:Clean;boss_ide:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="pkgSDKPrincipal:Make;boss_ide:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

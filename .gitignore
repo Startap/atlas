@@ -1,0 +1,9 @@
+# Ignoring Boss .lock file (keep always up to date with main dependencies)
+boss-lock.json
+
+# Ignoring Delphi local files
+*.local
+
+# Ignore compiled and __history files
+Win32/
+__history/

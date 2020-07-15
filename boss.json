@@ -1,0 +1,11 @@
+{
+	"name": "Componentes SDK",
+	"description": "",
+	"version": "0.0.1",
+	"homepage": "https://github.com/andrepg/sdk",
+	"mainsrc": "./Source",
+	"projects": [
+          "pkgSDKPrincipal.proj"
+        ],
+	"dependencies": {}
+}
