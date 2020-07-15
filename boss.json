@@ -5,7 +5,7 @@
 	"homepage": "https://github.com/andrepg/sdk",
 	"mainsrc": "./Source",
 	"projects": [
-          "pkgSDKPrincipal.proj"
+          "pkgSDKPrincipal.dproj"
         ],
 	"dependencies": {}
 }

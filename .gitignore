@@ -3,6 +3,7 @@ boss-lock.json
 
 # Ignoring Delphi local files
 *.local
+*.identcache
 
 # Ignore compiled and __history files
 Win32/
