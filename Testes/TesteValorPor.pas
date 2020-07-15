@@ -39,7 +39,10 @@ type
       ]
     [ TestCase( 'TestaValorMilhao',
       '1020840.80,UM MILHÃO, VINTE MIL, OITOCENTOS E QUARENTA REAIS' ) ]
-    [ TestCase( 'TestaValorBilhao',
+    [ TestCase( 'TestaValorUmBilhão',
+      '1145843908.98,UM BILHÃO, CENTO E QUARENTA E CINCO MILHÕES, QUINHENTOS E OITENTA E TRÊS MIL, NOVECENTOS E OITO REAIS, NOVENTA E OITO CENTAVOS' )
+      ]
+    [ TestCase( 'TestaValorMaisDeDoisBilhões',
       '2145543908.98,DOIS BILHÕES, CENTO E QUARENTA E CINCO MILHÕES, QUINHENTOS E QUARENTA E TRÊS MIL, NOVECENTOS E OITO REAIS, NOVENTA E OITO CENTAVOS' )
       ]
     procedure TestValoresPorExtenso( const AValue1: Double;
@@ -87,35 +90,37 @@ var
   lLabelAssociado: TLabel;
 begin
   lLabelAssociado := TLabel.Create( nil );
-  lLabelAssociado.Caption := 'Valor Padrão';
 
+  lLabelAssociado.Caption := 'Valor Padrão';
   Assert.AreEqual(
     'Valor Padrão',
     lLabelAssociado.Caption );
 
   objValor.LabelAssociado := lLabelAssociado;
-  objValor.Valor := 10;
 
+  objValor.Valor := 10;
   Assert.AreEqual(
     objValor.Texto,
     lLabelAssociado.Caption );
 
   objValor.Valor := 15.87;
-
   Assert.AreEqual(
     objValor.Texto,
-    lLabelAssociado.Caption
-  );
+    lLabelAssociado.Caption );
 end;
 
 procedure TTestValorPor.TestMudaMoedaNoPlural;
 begin
-  Assert.AreEqual('REAIS', objValor.MoedaNoPlural);
+  Assert.AreEqual(
+    'REAIS',
+    objValor.MoedaNoPlural );
 end;
 
 procedure TTestValorPor.TestMudaMoedaNoSingular;
 begin
-  Assert.AreEqual('REAL', objValor.MoedaNoSingular);
+  Assert.AreEqual(
+    'REAL',
+    objValor.MoedaNoSingular );
 end;
 
 procedure TTestValorPor.TestValoresPorExtenso( const AValue1: Double;
