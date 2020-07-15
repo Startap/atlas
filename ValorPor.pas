@@ -141,7 +141,6 @@ const
 var
   N: Integer;
   Tam: Integer;
-  Aux: String;
 
   function Trata0a99(const S: String; N: Integer): String;
   begin
@@ -187,7 +186,6 @@ var
   I: Integer;
   Aux: String;
   Grupo: String;
-  IndGrupo: Integer;
   Truncado: Longint;
 begin
   Lst := nil;
@@ -304,3 +302,5 @@ begin
 end;
 
 end.
+
+
