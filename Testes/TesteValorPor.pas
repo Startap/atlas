@@ -3,7 +3,9 @@ unit TesteValorPor;
 interface
 
 uses
-  DUnitX.TestFramework, ValorPor;
+  DUnitX.TestFramework,
+  Vcl.StdCtrls,
+  ValorPor;
 
 type
 
@@ -14,20 +16,23 @@ type
     procedure Setup;
     [TearDown]
     procedure TearDown;
-    // Sample Methods
-    // Simple single Test
     [Test]
     procedure TestValorExtensoZerado;
-    // Test with TestCase Attribute to supply parameters.
+    [Test]
+    procedure TestExceptionValorNegativo;
+    [Test]
+    procedure TestMudaLabelAssociado;
+    [Test]
+    procedure TestMudaMoedaNoSingular;
+    [Test]
+    procedure TestMudaMoedaNoPlural;
     [Test]
     [TestCase('TestaValorNegativo', '20,VINTE REAIS')]
     [TestCase('TesteValorPositivo', '4.50,QUATRO REAIS, CINQUENTA CENTAVOS')]
-    [TestCase('TesteValorPositivo', '24.13,VINTE E QUATRO REAIS, TREZE CENTAVOS')]
+    [TestCase('TesteValorPositivo',
+      '24.13,VINTE E QUATRO REAIS, TREZE CENTAVOS')]
     procedure TestValoresPorExtenso(const AValue1: Double;
       const AValue2: string);
-
-    [Test]
-    procedure TestExceptionValorNegativo;
   end;
 
 implementation
@@ -55,12 +60,39 @@ end;
 
 procedure TTestValorPor.TestExceptionValorNegativo;
 begin
+  Assert.WillRaiseAny(
+    procedure
+    begin
+      objValor.Valor :=  -16;
+    end, '');
+end;
+
+procedure TTestValorPor.TestMudaLabelAssociado;
+var lLabelAssociado: TLabel;
+begin
+  lLabelAssociado := TLabel.Create(nil);
+  lLabelAssociado.Caption := 'Valor Padrão';
+
+  Assert.AreEqual('Valor Padrão', lLabelAssociado.Caption);
+
+  objValor.LabelAssociado := lLabelAssociado;
+  objValor.Valor := 10;
+
+  Assert.AreEqual(objValor.Texto, lLabelAssociado.Caption);
+end;
+
+procedure TTestValorPor.TestMudaMoedaNoPlural;
+begin
   Assert.NotImplemented;
 end;
 
-procedure TTestValorPor.TestValoresPorExtenso(
-  const AValue1: Double;
-  const AValue2: String);
+procedure TTestValorPor.TestMudaMoedaNoSingular;
+begin
+  Assert.NotImplemented;
+end;
+
+procedure TTestValorPor.TestValoresPorExtenso(const AValue1: Double;
+const AValue2: String);
 begin
   objValor.Valor := AValue1;
   Assert.Contains(objValor.Texto, AValue2);
