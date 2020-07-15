@@ -2,6 +2,71 @@
 	"hash": "d41d8cd98f00b204e9800998ecf8427e",
 	"updated": "2020-07-14T23:40:50.634931-03:00",
 	"installedModules": {
+		"github.com/andrepg/sdk": {
+			"name": "sdk",
+			"version": "master",
+			"hash": "6e4b018052cc8b2f4562740ccbca4b21",
+			"artifacts": {},
+			"failed": false,
+			"changed": false
+		},
+		"github.com/hashload/boss-ide": {
+			"name": "boss-ide",
+			"version": "1.4.1",
+			"hash": "2fe99c130b2d4edffac691cd70db6c41",
+			"artifacts": {
+				"dcp": [
+					"boss_ide.bpi",
+					"boss_ide.dcp",
+					"boss_ide.lib"
+				],
+				"dcu": [
+					"Boss.Commands.dcu",
+					"Boss.EventWrapper.dcu",
+					"Boss.IDE.BossInstall.dcu",
+					"Boss.IDE.Installer.dcu",
+					"Boss.IDE.PojectListener.dcu",
+					"Boss.IDE.Register.dcu",
+					"Boss.Ide.CnCommon.lite.dcu",
+					"Boss.Ide.CnOTAUtils.dcu",
+					"Boss.Ide.OpenToolApi.Tools.dcu",
+					"Boss.Modules.PackageProcessor.dcu",
+					"Providers.Consts.dcu",
+					"Providers.Logo.dcu",
+					"Providers.Message.dcu"
+				],
+				"bpl": [
+					"boss_ide.bpl"
+				]
+			},
+			"failed": false,
+			"changed": false
+		},
+		"github.com/hashload/doscommand": {
+			"name": "doscommand",
+			"version": "1.0.3",
+			"hash": "993bf441af7e2826ab6a9aad13c864fc",
+			"artifacts": {
+				"dcp": [
+					"DOSCommandDD.bpi",
+					"DOSCommandDD.dcp",
+					"DOSCommandDD.lib",
+					"DOSCommandDR.bpi",
+					"DOSCommandDR.dcp",
+					"DOSCommandDR.lib"
+				],
+				"dcu": [
+					"DosCommand.Register.dcu",
+					"DosCommand.dcu"
+				],
+				"bpl": [
+					"DOSCommandDD260.bpl",
+					"DOSCommandDR260.bpl"
+				]
+			},
+			"failed": false,
+			"changed": false
+		},
 		"github.com/hashload/horse": {
 			"name": "horse",
 			"version": "1.7.7",

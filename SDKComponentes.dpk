@@ -25,12 +25,12 @@ package SDKComponentes;
 {$IMAGEBASE $400000}
 {$DEFINE DEBUG}
 {$ENDIF IMPLICITBUILDING}
-{$IMPLICITBUILD OFF}
-
+{$IMPLICITBUILD ON}
 
 requires
   rtl,
-  vcl;
+  vcl,
+  boss_ide;
 
 contains
   ValorPor in 'ValorPor.pas';

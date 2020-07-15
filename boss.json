@@ -8,6 +8,8 @@
 		"SDKComponentes.dproj"
 	],
 	"dependencies": {
+		"github.com/andrepg/sdk": ">0.0.0",
+		"github.com/hashload/boss-ide": "^1.4.1",
 		"github.com/hashload/horse": "^1.7.7"
 	}
 }
