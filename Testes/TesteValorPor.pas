@@ -9,30 +9,41 @@ uses
 
 type
 
-  [TestFixture]
-  TTestValorPor = class(TObject)
+  [ TestFixture ]
+  TTestValorPor = class( TObject )
   public
-    [Setup]
+    [ Setup ]
     procedure Setup;
-    [TearDown]
+    [ TearDown ]
     procedure TearDown;
-    [Test]
+    [ Test ]
     procedure TestValorExtensoZerado;
-    [Test]
+    [ Test ]
     procedure TestExceptionValorNegativo;
-    [Test]
+    [ Test ]
     procedure TestMudaLabelAssociado;
-    [Test]
+    [ Test ]
     procedure TestMudaMoedaNoSingular;
-    [Test]
+    [ Test ]
     procedure TestMudaMoedaNoPlural;
-    [Test]
-    [TestCase('TestaValorNegativo', '20,VINTE REAIS')]
-    [TestCase('TesteValorPositivo', '4.50,QUATRO REAIS, CINQUENTA CENTAVOS')]
-    [TestCase('TesteValorPositivo',
-      '24.13,VINTE E QUATRO REAIS, TREZE CENTAVOS')]
-    procedure TestValoresPorExtenso(const AValue1: Double;
-      const AValue2: string);
+    [ Test ]
+    [ TestCase( 'TestaValorAbaixo10',
+      '4.50,QUATRO REAIS, CINQUENTA CENTAVOS' ) ]
+    [ TestCase( 'TestaValorEntre10e100',
+      '34.80,TRINTA E QUATRO REAIS, OITENTA CENTAVOS' ) ]
+    [ TestCase( 'TestaValorMilhar',
+      '1569.80,UM MIL E QUINHENTOS E SESSENTA E NOVE REAIS, OITENTA CENTAVOS' )
+      ]
+    [ TestCase( 'TestaValorMilhar',
+      '11569.80,ONZE MIL E QUINHENTOS E SESSENTA E NOVE REAIS, OITENTA CENTAVOS' )
+      ]
+    [ TestCase( 'TestaValorMilhao',
+      '1020840.80,UM MILHÃO, VINTE MIL, OITOCENTOS E QUARENTA REAIS' ) ]
+    [ TestCase( 'TestaValorBilhao',
+      '2145543908.98,DOIS BILHÕES, CENTO E QUARENTA E CINCO MILHÕES, QUINHENTOS E QUARENTA E TRÊS MIL, NOVECENTOS E OITO REAIS, NOVENTA E OITO CENTAVOS' )
+      ]
+    procedure TestValoresPorExtenso( const AValue1: Double;
+      const AValue2: string );
   end;
 
 implementation
@@ -44,7 +55,7 @@ var
 
 procedure TTestValorPor.Setup;
 begin
-  objValor := TValorPorExtenso.Create(nil);
+  objValor := TValorPorExtenso.Create( nil );
 end;
 
 procedure TTestValorPor.TearDown;
@@ -55,7 +66,9 @@ end;
 procedure TTestValorPor.TestValorExtensoZerado;
 begin
   objValor.Valor := 0;
-  Assert.Contains(objValor.Texto, 'ZERO REAIS');
+  Assert.Contains(
+    objValor.Texto,
+    'ZERO REAIS' );
 end;
 
 procedure TTestValorPor.TestExceptionValorNegativo;
@@ -63,43 +76,59 @@ begin
   Assert.WillRaiseAny(
     procedure
     begin
-      objValor.Valor :=  -16;
-    end, '');
+      objValor.Valor := -16;
+    end
+    ,
+    'Esperado TExceptionClass quando atribuído valor negativo.' );
 end;
 
 procedure TTestValorPor.TestMudaLabelAssociado;
-var lLabelAssociado: TLabel;
+var
+  lLabelAssociado: TLabel;
 begin
-  lLabelAssociado := TLabel.Create(nil);
+  lLabelAssociado := TLabel.Create( nil );
   lLabelAssociado.Caption := 'Valor Padrão';
 
-  Assert.AreEqual('Valor Padrão', lLabelAssociado.Caption);
+  Assert.AreEqual(
+    'Valor Padrão',
+    lLabelAssociado.Caption );
 
   objValor.LabelAssociado := lLabelAssociado;
   objValor.Valor := 10;
 
-  Assert.AreEqual(objValor.Texto, lLabelAssociado.Caption);
+  Assert.AreEqual(
+    objValor.Texto,
+    lLabelAssociado.Caption );
+
+  objValor.Valor := 15.87;
+
+  Assert.AreEqual(
+    objValor.Texto,
+    lLabelAssociado.Caption
+  );
 end;
 
 procedure TTestValorPor.TestMudaMoedaNoPlural;
 begin
-  Assert.NotImplemented;
+  Assert.AreEqual('REAIS', objValor.MoedaNoPlural);
 end;
 
 procedure TTestValorPor.TestMudaMoedaNoSingular;
 begin
-  Assert.NotImplemented;
+  Assert.AreEqual('REAL', objValor.MoedaNoSingular);
 end;
 
-procedure TTestValorPor.TestValoresPorExtenso(const AValue1: Double;
-const AValue2: String);
+procedure TTestValorPor.TestValoresPorExtenso( const AValue1: Double;
+const AValue2: string );
 begin
   objValor.Valor := AValue1;
-  Assert.Contains(objValor.Texto, AValue2);
+  Assert.Contains(
+    objValor.Texto,
+    AValue2 );
 end;
 
 initialization
 
-TDUnitX.RegisterTestFixture(TTestValorPor);
+TDUnitX.RegisterTestFixture( TTestValorPor );
 
 end.
