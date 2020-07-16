@@ -5,6 +5,7 @@ modules/
 # Ignoring Delphi local files
 *.local
 *.identcache
+*.tvsconfig
 
 # Ignore compiled and __history files
 Win32/
