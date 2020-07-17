@@ -7,10 +7,10 @@ type
 
 type
   RInformacoesConexao = record
-    FUsuarioConexao: string;
-    FSenhaConexao: string;
-    FNomeBancoDados: string;
-    FMecanismoBanco: TMecanismoConexao;
+    Usuario: string;
+    Senha: string;
+    NomeBancoDados: string;
+    MecanismoBanco: TMecanismoConexao;
   end;
 
 type
@@ -53,19 +53,27 @@ uses System.SysUtils;
 
 constructor ConexaoBanco.Create( AInformacoesConexao: RInformacoesConexao );
 begin
-  inherited;
   // Atribuir as informações de conexão
-  if not Assigned( AInformacoesConexao ) then
-  begin
-    raise EArgumentNilException.Create
-      ( 'Nenhuma informação de conexão ao banco fornecida' );
-  end;
+
 end;
 
 function ConexaoBanco.fnGetDriverConexao( AMecanismo
   : TMecanismoConexao ): string;
+var
+  sNomeDriver: string;
 begin
+  case AMecanismo of
+    mcSQLServer:
+      sNomeDriver := '';
+    mcPostgreSQL:
+      sNomeDriver := '';
+    mcMySQL:
+      sNomeDriver := '';
+    mcSQLite:
+      sNomeDriver := '';
+  end;
 
+  Result := sNomeDriver;
 end;
 
 initialization
