@@ -34,6 +34,7 @@ requires
   vcl;
 
 contains
-  ValorPor in 'Source\ValorPor.pas';
+  ValorPor in 'Source\ValorPor.pas',
+  Conexao in 'Source\Objetos\Conexao.pas';
 
 end.
