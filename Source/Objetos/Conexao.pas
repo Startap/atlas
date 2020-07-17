@@ -15,19 +15,19 @@ type
 
 type
   ConexaoBanco = class( TObject )
-  /// <summary>
-  ///   Cria o objeto com as informações de conexão estabelecidas
-  /// </summary>
-/// <param name="AInformacoesConexao">
-///   Um record do tipo <c>RInformacoesConexao</c> alimentado
-///  com todas as variáveis necessárias
-/// </param>
+    /// <summary>
+    /// Cria o objeto com as informações de conexão estabelecidas
+    /// </summary>
+    /// <param name="AInformacoesConexao">
+    /// Um record do tipo <c>RInformacoesConexao</c> alimentado
+    /// com todas as variáveis necessárias
+    /// </param>
     /// <remarks>
-    ///   Se o parâmetro for nulo a função retorna uma <c>EArgumentNil</c>
-    ///  Se algum field do AInformacoesConexao for inválido deve retornar
-    ///  uma <c>EArgumentException</c> com mensagem do parâmetro vazio
+    /// Se o parâmetro for nulo a função retorna uma <c>EArgumentNil</c>
+    /// Se algum field do AInformacoesConexao for inválido deve retornar
+    /// uma <c>EArgumentException</c> com mensagem do parâmetro vazio
     /// </remarks>
-  constructor Create(AInformacoesConexao: RInformacoesConexao);
+    constructor Create( AInformacoesConexao: RInformacoesConexao );
   private
     /// <summary>
     /// Retorna o driver utilizado para conectar no banco
@@ -47,12 +47,19 @@ type
 
 implementation
 
+uses System.SysUtils;
+
 { ConexaoBanco }
 
-constructor ConexaoBanco.Create(AInformacoesConexao: RInformacoesConexao);
+constructor ConexaoBanco.Create( AInformacoesConexao: RInformacoesConexao );
 begin
   inherited;
   // Atribuir as informações de conexão
+  if not Assigned( AInformacoesConexao ) then
+  begin
+    raise EArgumentNilException.Create
+      ( 'Nenhuma informação de conexão ao banco fornecida' );
+  end;
 end;
 
 function ConexaoBanco.fnGetDriverConexao( AMecanismo
