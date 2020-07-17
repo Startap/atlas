@@ -96,7 +96,7 @@
         <DCC_Namespace>System;Xml;Data;Datasnap;Web;Soap;$(DCC_Namespace)</DCC_Namespace>
         <Icon_MainIcon>$(BDS)\bin\delphi_PROJECTICON.ico</Icon_MainIcon>
         <Icns_MainIcns>$(BDS)\bin\delphi_PROJECTICNS.icns</Icns_MainIcns>
-        <DCC_UnitSearchPath>$(DUnitX);D:\SDK\Source;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>$(DUnitX);.\Source;.\Source\Objetos;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <SanitizedProjectName>Test_Runner</SanitizedProjectName>
         <VerInfo_Locale>1046</VerInfo_Locale>
     </PropertyGroup>
@@ -166,6 +166,7 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="Testes\TesteValorPor.pas"/>
+        <DCCReference Include="Testes\TesteObjetoConexao.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

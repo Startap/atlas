@@ -23,7 +23,7 @@ type
     /// com todas as variáveis necessárias
     /// </param>
     /// <remarks>
-    /// Se o parâmetro for nulo a função retorna uma <c>EArgumentNil</c>
+    /// Se o parâmetro for nulo a função retorna uma <c>EArgumentNilException</c>
     /// Se algum field do AInformacoesConexao for inválido deve retornar
     /// uma <c>EArgumentException</c> com mensagem do parâmetro vazio
     /// </remarks>

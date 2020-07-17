@@ -11,7 +11,8 @@ uses
   DUnitX.Loggers.Console,
   DUnitX.Loggers.Xml.NUnit,
   DUnitX.TestFramework,
-  TesteValorPor in 'Testes\TesteValorPor.pas';
+  TesteValorPor in 'Testes\TesteValorPor.pas',
+  TesteObjetoConexao in 'Testes\TesteObjetoConexao.pas';
 
 var
   runner : ITestRunner;
