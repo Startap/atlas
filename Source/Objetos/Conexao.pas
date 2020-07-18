@@ -2,6 +2,8 @@ unit Conexao;
 
 interface
 
+uses FireDAC.Comp.Client;
+
 type
   TMecanismoConexao = ( mcSQLServer, mcPostgreSQL, mcMySQL, mcSQLite );
 
@@ -14,7 +16,7 @@ type
   end;
 
 type
-  ConexaoBanco = class( TObject )
+  ConexaoBanco = class( TFDConnection )
     /// <summary>
     /// Cria o objeto com as informações de conexão estabelecidas
     /// </summary>
@@ -27,22 +29,26 @@ type
     /// Se algum field do AInformacoesConexao for inválido deve retornar
     /// uma <c>EArgumentException</c> com mensagem do parâmetro vazio
     /// </remarks>
-    constructor Create( AInformacoesConexao: RInformacoesConexao );
+    constructor Create( AInformacoesConexao: RInformacoesConexao ); reintroduce;
+
+    {**
+    TODO -oAPG: Escrever rotina para retornar o objeto FireDAC conectado ao banco
+    **}
+
+    {**
+    TODO -oAPG: Escrever rotina para criar o objeto FireDAC com as informações do Create
+    **}
+
+    {**
+    TODO -oAPG: Escrever rotina para finalizar a conexao com o objeto durante o Destroy
+    **}
+
+    {**
+    TODO -oAPG: Escrever rotina para gerar SQL dos dados (CRUD completo)
+    **}
   private
-    /// <summary>
-    /// Retorna o driver utilizado para conectar no banco
-    /// </summary>
-    /// <param name="AMecanismo">
-    /// Um mecanismo do tipo TMecanismoConexao para identificar o SGDB
-    /// </param>
-    /// <remarks>
-    /// Se o parâmetro <c>AMecanismo</c> for inválido a função
-    /// vai retornar um <c>EArgumentException</c>
-    /// </remarks>
-    /// <returns>
-    /// Uma string com o nome da biblioteca de conexão ao banco
-    /// </returns>
-    function fnGetDriverConexao( AMecanismo: TMecanismoConexao ): string;
+    procedure prVerificaParametrosVazios(AInformacoesConexao: RInformacoesConexao);
+
   end;
 
 implementation
@@ -53,27 +59,23 @@ uses System.SysUtils;
 
 constructor ConexaoBanco.Create( AInformacoesConexao: RInformacoesConexao );
 begin
-  // Atribuir as informações de conexão
-
+  prVerificaParametrosVazios(AInformacoesConexao);
 end;
 
-function ConexaoBanco.fnGetDriverConexao( AMecanismo
-  : TMecanismoConexao ): string;
-var
-  sNomeDriver: string;
+procedure ConexaoBanco.prVerificaParametrosVazios(AInformacoesConexao: RInformacoesConexao);
 begin
-  case AMecanismo of
-    mcSQLServer:
-      sNomeDriver := '';
-    mcPostgreSQL:
-      sNomeDriver := '';
-    mcMySQL:
-      sNomeDriver := '';
-    mcSQLite:
-      sNomeDriver := '';
+  if AInformacoesConexao.Usuario.IsEmpty then
+  begin
+    raise EArgumentNilException.Create('Nenhum usuário para conexão foi informado');
   end;
-
-  Result := sNomeDriver;
+  if AInformacoesConexao.Senha.IsEmpty then
+  begin
+    raise EArgumentNilException.Create('Nenhuma senha para conexão foi informado');
+  end;
+  if AInformacoesConexao.NomeBancoDados.IsEmpty then
+  begin
+    raise EArgumentNilException.Create('Nenhum banco de dados para conexão foi informado');
+  end;
 end;
 
 initialization

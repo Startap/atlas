@@ -10,7 +10,7 @@ uses
 type
 
   [ TestFixture ]
-  TTesteObjetoConexao = class( TObject )
+  TTestObjetoConexao = class( TObject )
   public
     [ SetUp ]
     procedure SetUp;
@@ -22,9 +22,6 @@ type
     procedure TestaObjetoCriado;
 
     [ Test ]
-    procedure TestaEArgumentNilExceptionAoCriarObjeto;
-
-    [ Test ]
     procedure TestaEArgumentNilExceptionUsuarioVazio;
 
     [ Test ]
@@ -32,76 +29,96 @@ type
 
     [ Test ]
     procedure TestaEArgumentNilExceptionSenhaUsuarioVazia;
-
-    [ Test ]
-    procedure TestaEArgumentNilExceptionMecanismoIncorreto;
-
-    [ Test ]
-    [ TestCase( 'SQL Server', 'TMecanismoConexao.mcSQLServer, dbx.dll' ) ]
-    [ TestCase( 'SQL Server', 'TMecanismoConexao.mcPostgreSQL, dbx.dll' ) ]
-    [ TestCase( 'SQL Server', 'TMecanismoConexao.mcMySQL, dbx.dll' ) ]
-    [ TestCase( 'SQL Server', 'TMecanismoConexao.mcSQLite, dbx.dll' ) ]
-    procedure TestaMapeamentoDeDriversDoBancoDeDados
-      ( AMecanismo: TMecanismoConexao; AEsperado: string );
   end;
 
 implementation
 
-{ TTesteObjetoConexao }
+{ TTestObjetoConexao }
 
 var
   rInformacoesBanco: RInformacoesConexao;
+  objConexao: ConexaoBanco;
 
-procedure TTesteObjetoConexao.SetUp;
+const
+  USUARIO   = 'UsuárioBancoDados';
+  SENHA     = 'SenhaBancoDados';
+  BANCO     = 'Database';
+  MECANISMO = mcMySQL;
+
+procedure TTestObjetoConexao.SetUp;
+begin
+  rInformacoesBanco.Usuario := USUARIO;
+  rInformacoesBanco.NomeBancoDados := BANCO;
+  rInformacoesBanco.Senha := SENHA;
+end;
+
+procedure TTestObjetoConexao.TearDown;
+begin
+  objConexao := nil;
+end;
+
+procedure TTestObjetoConexao.TestaEArgumentNilExceptionNomeBancoVazio;
+begin
+  rInformacoesBanco.NomeBancoDados := '';
+  rInformacoesBanco.MecanismoBanco := MECANISMO;
+  Assert.WillRaise(
+    procedure
+    begin
+      objConexao := ConexaoBanco.Create( rInformacoesBanco );
+    end
+    ,
+    EArgumentNilException,
+    'Quando não houver nome do banco informado é esperada uma exceção EArgumentNilException' );
+end;
+
+procedure TTestObjetoConexao.TestaEArgumentNilExceptionSenhaUsuarioVazia;
+begin
+  rInformacoesBanco.Senha := '';
+  rInformacoesBanco.MecanismoBanco := MECANISMO;
+  Assert.WillRaise(
+    procedure
+    begin
+      objConexao := ConexaoBanco.Create( rInformacoesBanco );
+    end
+    ,
+    EArgumentNilException,
+    'Quando não houver senha informada é esperada uma exceção EArgumentNilException' );
+end;
+
+procedure TTestObjetoConexao.TestaEArgumentNilExceptionUsuarioVazio;
 begin
   rInformacoesBanco.Usuario := '';
-  rInformacoesBanco.Senha := '';
-  rInformacoesBanco.NomeBancoDados := '';
+  rInformacoesBanco.MecanismoBanco := MECANISMO;
+  Assert.WillRaise(
+    procedure
+    begin
+      objConexao := ConexaoBanco.Create( rInformacoesBanco );
+    end
+    ,
+    EArgumentNilException,
+    'Quando não houver usuário informado é esperada uma exceção EArgumentNilException' );
 end;
 
-procedure TTesteObjetoConexao.TearDown;
+procedure TTestObjetoConexao.TestaObjetoCriado;
 begin
-  FreeAndNil( rInformacoesBanco );
-end;
+  rInformacoesBanco.MecanismoBanco := MECANISMO;
 
-procedure TTesteObjetoConexao.TestaEArgumentNilExceptionAoCriarObjeto;
-begin
-  Assert.NotImplemented;
-end;
+  Assert.WillNotRaise(
+    procedure
+    begin
+      objConexao := ConexaoBanco.Create( rInformacoesBanco );
+    end
+    ,
+    Exception,
+    'É esperado que a criação de um objeto não retorne exceções' );
 
-procedure TTesteObjetoConexao.TestaEArgumentNilExceptionMecanismoIncorreto;
-begin
-  Assert.NotImplemented;
-end;
-
-procedure TTesteObjetoConexao.TestaEArgumentNilExceptionNomeBancoVazio;
-begin
-  Assert.NotImplemented;
-end;
-
-procedure TTesteObjetoConexao.TestaEArgumentNilExceptionSenhaUsuarioVazia;
-begin
-  Assert.NotImplemented;
-end;
-
-procedure TTesteObjetoConexao.TestaEArgumentNilExceptionUsuarioVazio;
-begin
-  Assert.NotImplemented;
-end;
-
-procedure TTesteObjetoConexao.TestaMapeamentoDeDriversDoBancoDeDados(AMecanismo: TMecanismoConexao;
-  AEsperado: string);
-begin
-  Assert.NotImplemented;
-end;
-
-procedure TTesteObjetoConexao.TestaObjetoCriado;
-begin
-  Assert.NotImplemented;
+  Assert.InheritsFrom(
+    objConexao.ClassType,
+    ConexaoBanco );
 end;
 
 initialization
 
-TDUnitX.RegisterTestFixture( TTesteObjetoConexao );
+TDUnitX.RegisterTestFixture( TTestObjetoConexao );
 
 end.
