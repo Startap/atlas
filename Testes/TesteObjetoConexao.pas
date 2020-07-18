@@ -5,7 +5,8 @@ interface
 uses
   DUnitX.TestFramework,
   System.SysUtils,
-  Conexao;
+  Conexao,
+  Types.Conexao;
 
 type
 
@@ -28,10 +29,14 @@ type
     procedure TestaExcecaoSenhaVazia;
     [ Test ]
     procedure TestaExcecaoIpVazio;
-
-    // procedure TestaGetConexaoMySql;
-
-    // procedure TestaGetConexaoMySql;
+    [ Test ]
+    procedure TestaStringConexaoMySQL;
+    [ Test ]
+    procedure TestaStringConexaoPostgreSQL;
+    [ Test ]
+    procedure TestaStringConexaoSQLServer;
+    [ Test ]
+    procedure TestaStringConexaoSQLite;
   end;
 
 implementation
@@ -138,6 +143,26 @@ begin
   Assert.InheritsFrom(
     objConexao.ClassType,
     ConexaoBanco );
+end;
+
+procedure TTestObjetoConexao.TestaStringConexaoMySQL;
+begin
+  Assert.NotImplemented;
+end;
+
+procedure TTestObjetoConexao.TestaStringConexaoPostgreSQL;
+begin
+  Assert.NotImplemented;
+end;
+
+procedure TTestObjetoConexao.TestaStringConexaoSQLite;
+begin
+  Assert.NotImplemented;
+end;
+
+procedure TTestObjetoConexao.TestaStringConexaoSQLServer;
+begin
+  Assert.NotImplemented;
 end;
 
 initialization

@@ -31,10 +31,15 @@ package pkgSDKRuntime;
 
 requires
   rtl,
-  vcl;
+  vcl,
+  dbrtl,
+  FireDAC,
+  FireDACCommonDriver,
+  FireDACCommon;
 
 contains
   ValorPor in 'Source\ValorPor.pas',
-  Conexao in 'Source\Objetos\Conexao.pas';
+  Conexao in 'Source\Objetos\Conexao.pas',
+  Types.Conexao in 'Source\Objetos\Types.Conexao.pas';
 
 end.
