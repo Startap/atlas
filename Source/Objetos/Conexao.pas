@@ -2,7 +2,7 @@ unit Conexao;
 
 interface
 
-uses FireDAC.Comp.Client;
+uses FireDAC.Comp.Client, FireDAC.Stan.Def;
 
 type
   TMecanismoConexao = ( mcSQLServer, mcPostgreSQL, mcMySQL, mcSQLite );
@@ -11,6 +11,8 @@ type
   RInformacoesConexao = record
     Usuario: string;
     Senha: string;
+    IPServidor: string;
+    PortaConexao: Integer;
     NomeBancoDados: string;
     MecanismoBanco: TMecanismoConexao;
   end;
@@ -31,23 +33,29 @@ type
     /// </remarks>
     constructor Create( AInformacoesConexao: RInformacoesConexao ); reintroduce;
 
-    {**
-    TODO -oAPG: Escrever rotina para retornar o objeto FireDAC conectado ao banco
-    **}
-
-    {**
-    TODO -oAPG: Escrever rotina para criar o objeto FireDAC com as informações do Create
-    **}
-
-    {**
-    TODO -oAPG: Escrever rotina para finalizar a conexao com o objeto durante o Destroy
-    **}
-
-    {**
-    TODO -oAPG: Escrever rotina para gerar SQL dos dados (CRUD completo)
-    **}
   private
-    procedure prVerificaParametrosVazios(AInformacoesConexao: RInformacoesConexao);
+    { **
+      TODO -oAPG: Escrever rotina para retornar o objeto FireDAC conectado ao banco
+      ** }
+    function fnRetornaComponenteConexao: TFDConnection;
+    { **
+      TODO -oAPG: Escrever rotina para criar o objeto FireDAC com as informações do Create
+      ** }
+    procedure prConfiguraConexaoComBanco;
+
+    { **
+      TODO -oAPG: Escrever rotina para gerar SQL dos dados (CRUD completo)
+      ** }
+
+    { **
+      TODO -oAPG: Escrever rotina para finalizar a conexao com o objeto durante o Destroy
+      ** }
+    destructor LimpaMemoria;
+
+    { TODO -oAPG: Incluir documentação dos métodos já desenvolvidos }
+    procedure prRetornarExcecao( AMessage: string );
+    procedure prVerificaParametrosVazios( AInformacoesConexao
+      : RInformacoesConexao );
 
   end;
 
@@ -57,24 +65,55 @@ uses System.SysUtils;
 
 { ConexaoBanco }
 
+var
+  cConexaoFiredac: TFDConnection;
+
 constructor ConexaoBanco.Create( AInformacoesConexao: RInformacoesConexao );
 begin
-  prVerificaParametrosVazios(AInformacoesConexao);
+  prVerificaParametrosVazios( AInformacoesConexao );
+
+  cConexaoFiredac := TFDConnection.Create( Self );
 end;
 
-procedure ConexaoBanco.prVerificaParametrosVazios(AInformacoesConexao: RInformacoesConexao);
+function ConexaoBanco.fnRetornaComponenteConexao: TFDConnection;
+begin
+  Result := nil;
+end;
+
+destructor ConexaoBanco.LimpaMemoria;
+begin
+  // Limpar todo uso de memória necessário durante o funcionamento do componente
+end;
+
+procedure ConexaoBanco.prConfiguraConexaoComBanco;
+begin
+
+end;
+
+procedure ConexaoBanco.prRetornarExcecao( AMessage: string );
+begin
+  raise EArgumentNilException.Create( AMessage );
+end;
+
+procedure ConexaoBanco.prVerificaParametrosVazios( AInformacoesConexao
+  : RInformacoesConexao );
 begin
   if AInformacoesConexao.Usuario.IsEmpty then
   begin
-    raise EArgumentNilException.Create('Nenhum usuário para conexão foi informado');
+    prRetornarExcecao( 'Nenhum usuário para conexão foi informado' );
   end;
   if AInformacoesConexao.Senha.IsEmpty then
   begin
-    raise EArgumentNilException.Create('Nenhuma senha para conexão foi informado');
+    prRetornarExcecao( 'Nenhuma senha para conexão foi informado' );
   end;
   if AInformacoesConexao.NomeBancoDados.IsEmpty then
   begin
-    raise EArgumentNilException.Create('Nenhum banco de dados para conexão foi informado');
+    prRetornarExcecao( 'Nenhum banco de dados para conexão foi informado' );
+  end;
+  if AInformacoesConexao.IPServidor.IsEmpty then
+  begin
+    prRetornarExcecao
+      ( 'Nenhum endereço de servidor para conexão foi informado' );
   end;
 end;
 
