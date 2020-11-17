@@ -25,7 +25,7 @@ package pkgAtlas;
 {$IMAGEBASE $400000}
 {$DEFINE DEBUG}
 {$ENDIF IMPLICITBUILDING}
-{$DESCRIPTION 'Atlas Framework'}
+{$DESCRIPTION 'SDK Runtine Libraries'}
 {$RUNONLY}
 {$IMPLICITBUILD ON}
 
@@ -39,6 +39,7 @@ contains
   ValorPor in 'Source\ValorPor.pas',
   SQLBuilder in 'Source\SQLBuilder\SQLBuilder.pas',
   Conexao in 'Source\Objetos\Conexao.pas',
-  Types.Conexao in 'Source\Objetos\Types.Conexao.pas';
+  Types.Conexao in 'Source\Objetos\Types.Conexao.pas',
+  Mail in 'Source\Mail\Mail.pas';
 
 end.
