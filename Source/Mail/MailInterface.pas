@@ -1,4 +1,4 @@
-unit Mail;
+unit MailInterface;
 
 interface
 
