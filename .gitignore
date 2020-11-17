@@ -6,6 +6,8 @@ modules/
 *.local
 *.identcache
 *.tvsconfig
+*.~*
+*.dsk
 
 # Ignore compiled and __history files
 Win32/

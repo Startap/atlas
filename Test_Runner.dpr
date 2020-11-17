@@ -11,7 +11,9 @@ uses
   DUnitX.Loggers.Console,
   DUnitX.Loggers.Xml.NUnit,
   DUnitX.TestFramework,
-  TesteValorPor in 'Testes\TesteValorPor.pas';
+  TesteValorPor in 'Testes\TesteValorPor.pas',
+  TesteSQLBuilder.Select in 'Testes\SQLBuilder\TesteSQLBuilder.Select.pas',
+  TesteSQLBuilder.Insert in 'Testes\SQLBuilder\TesteSQLBuilder.Insert.pas';
 
 var
   runner : ITestRunner;
