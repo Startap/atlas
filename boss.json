@@ -1,8 +1,8 @@
 {
-	"name": "Componentes SDK",
+	"name": "Framework 4Delphi",
 	"description": "",
 	"version": "0.0.1",
-	"homepage": "https://github.com/andrepg/sdk",
+	"homepage": "https://github.com/Startap/StartapSDK4D",
 	"mainsrc": "./Source",
 	"projects": [
           "pkgStartapSDK.dproj"
