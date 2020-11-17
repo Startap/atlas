@@ -1,11 +1,11 @@
 {
-	"name": "Framework 4Delphi",
+	"name": "Atlas Framework",
 	"description": "",
 	"version": "0.0.1",
-	"homepage": "https://github.com/Startap/StartapSDK4D",
+	"homepage": "https://github.com/Startap/atlas",
 	"mainsrc": "./Source",
 	"projects": [
-          "pkgStartapSDK.dproj"
+          "pkgAtlas.dproj"
         ],
 	"dependencies": {}
 }
