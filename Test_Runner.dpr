@@ -12,8 +12,11 @@ uses
   DUnitX.Loggers.Xml.NUnit,
   DUnitX.TestFramework,
   TesteValorPor in 'Testes\TesteValorPor.pas',
+  TesteSQLBuilder.Select in 'Testes\SQLBuilder\TesteSQLBuilder.Select.pas',
+  TesteSQLBuilder.Insert in 'Testes\SQLBuilder\TesteSQLBuilder.Insert.pas',
   TesteObjetoConexao in 'Testes\TesteObjetoConexao.pas',
-  Types.Conexao in 'Source\Objetos\Types.Conexao.pas';
+  Types.Conexao in 'Source\Objetos\Types.Conexao.pas',
+  SQLBuilder in 'Source\SQLBuilder\SQLBuilder.pas';
 
 var
   runner : ITestRunner;

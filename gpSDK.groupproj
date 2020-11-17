@@ -6,7 +6,7 @@
         <Projects Include="Test_Runner.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="pkgSDKRuntime.dproj">
+        <Projects Include="pkgStartapSDK.dproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -26,23 +26,23 @@
     <Target Name="Test_Runner:Make">
         <MSBuild Projects="Test_Runner.dproj" Targets="Make"/>
     </Target>
-    <Target Name="pkgSDKRuntime">
-        <MSBuild Projects="pkgSDKRuntime.dproj"/>
+    <Target Name="pkgStartapSDK">
+        <MSBuild Projects="pkgStartapSDK.dproj"/>
     </Target>
-    <Target Name="pkgSDKRuntime:Clean">
-        <MSBuild Projects="pkgSDKRuntime.dproj" Targets="Clean"/>
+    <Target Name="pkgStartapSDK:Clean">
+        <MSBuild Projects="pkgStartapSDK.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="pkgSDKRuntime:Make">
-        <MSBuild Projects="pkgSDKRuntime.dproj" Targets="Make"/>
+    <Target Name="pkgStartapSDK:Make">
+        <MSBuild Projects="pkgStartapSDK.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="Test_Runner;pkgSDKRuntime"/>
+        <CallTarget Targets="Test_Runner;pkgStartapSDK"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Test_Runner:Clean;pkgSDKRuntime:Clean"/>
+        <CallTarget Targets="Test_Runner:Clean;pkgStartapSDK:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Test_Runner:Make;pkgSDKRuntime:Make"/>
+        <CallTarget Targets="Test_Runner:Make;pkgStartapSDK:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

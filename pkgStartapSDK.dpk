@@ -1,4 +1,4 @@
-package pkgSDKRuntime;
+package pkgStartapSDK;
 
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
@@ -32,13 +32,12 @@ package pkgSDKRuntime;
 requires
   rtl,
   vcl,
-  dbrtl,
   FireDAC,
-  FireDACCommonDriver,
-  FireDACCommon;
+  dbrtl;
 
 contains
   ValorPor in 'Source\ValorPor.pas',
+  SQLBuilder in 'Source\SQLBuilder\SQLBuilder.pas',
   Conexao in 'Source\Objetos\Conexao.pas',
   Types.Conexao in 'Source\Objetos\Types.Conexao.pas';
 
