@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{8EA766EC-10D5-46F6-B458-174E230759D8}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="TestAtlas.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="pkgAtlas.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="TestAtlas">
+        <MSBuild Projects="TestAtlas.dproj"/>
+    </Target>
+    <Target Name="TestAtlas:Clean">
+        <MSBuild Projects="TestAtlas.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="TestAtlas:Make">
+        <MSBuild Projects="TestAtlas.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="pkgAtlas">
+        <MSBuild Projects="pkgAtlas.dproj"/>
+    </Target>
+    <Target Name="pkgAtlas:Clean">
+        <MSBuild Projects="pkgAtlas.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="pkgAtlas:Make">
+        <MSBuild Projects="pkgAtlas.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="TestAtlas;pkgAtlas"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="TestAtlas:Clean;pkgAtlas:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="TestAtlas:Make;pkgAtlas:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
