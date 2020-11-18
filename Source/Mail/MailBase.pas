@@ -21,13 +21,13 @@ type
       FFromAddress: string;
       FReplyToName: string;
       FReplyToAddress: string;
-      FToRecipient: TStringList;
-      FCcRecipient: TStringList;
-      FBccRecipient: TStringList;
+      FToRecipients: TStringList;
+      FCcRecipients: TStringList;
+      FBccRecipients: TStringList;
       FConfirmation: Boolean;
-      FAttachment: TStringList;
+      FAttachments: TStringList;
       FSubject: string;
-      FMessage: TStringList;
+      FMessages: TStringList;
       FHTML: Boolean;
     protected
       function GetHost: string;
@@ -41,13 +41,13 @@ type
       function GetFromAddress: string;
       function GetReplyToName: string;
       function GetReplyToAddress: string;
-      function GetToRecipient: TStringList;
-      function GetCcRecipient: TStringList;
-      function GetBccRecipient: TStringList;
+      function GetToRecipients: TStringList;
+      function GetCcRecipients: TStringList;
+      function GetBccRecipients: TStringList;
       function IsWithConfirmation: Boolean;
       function GetAttachments: TStringList;
       function GetSubject: string;
-      function GetMessage: TStringList;
+      function GetMessages: TStringList;
       function IsWithHTML: Boolean;
 
       procedure DoSend; virtual; abstract;
@@ -75,7 +75,7 @@ type
 
       function Subject(const AValue: string): IMail;
       function &Message(const AValue: string): IMail; overload;
-      function &Message(const AValue: TStringList): IMail; overload;
+      function &Message(const AValues: TStringList): IMail; overload;
       function UsingHTML(const AValue: Boolean = True): IMail;
 
       procedure Send;
@@ -93,7 +93,7 @@ end;
 
 function TMailBase.Attachment(const AFileName: string): IMail;
 begin
-  FAttachment.Add(AFileName);
+  FAttachments.Add(AFileName);
   Result := Self;
 end;
 
@@ -105,13 +105,13 @@ end;
 
 function TMailBase.BccRecipient(const AAddress: string): IMail;
 begin
-  FBccRecipient.Add(AAddress);
+  FBccRecipients.Add(AAddress);
   Result := Self;
 end;
 
 function TMailBase.CcRecipient(const AAddress: string): IMail;
 begin
-  FCcRecipient.Add(AAddress);
+  FCcRecipients.Add(AAddress);
   Result := Self;
 end;
 
@@ -127,23 +127,23 @@ begin
   FAuthentication := False;
   FFromName := EmptyStr;
   FFromAddress := EmptyStr;
-  FToRecipient := TStringList.Create;
-  FCcRecipient := TStringList.Create;
-  FBccRecipient := TStringList.Create;
+  FToRecipients := TStringList.Create;
+  FCcRecipients := TStringList.Create;
+  FBccRecipients := TStringList.Create;
   FConfirmation := False;
-  FAttachment := TStringList.Create;
+  FAttachments := TStringList.Create;
   FSubject := EmptyStr;
-  FMessage := TStringList.Create;
+  FMessages := TStringList.Create;
   FHTML := False;
 end;
 
 destructor TMailBase.Destroy;
 begin
-  FreeAndNil(FToRecipient);
-  FreeAndNil(FCcRecipient);
-  FreeAndNil(FBccRecipient);
-  FreeAndNil(FAttachment);
-  FreeAndNil(FMessage);
+  FreeAndNil(FToRecipients);
+  FreeAndNil(FCcRecipients);
+  FreeAndNil(FBccRecipients);
+  FreeAndNil(FAttachments);
+  FreeAndNil(FMessages);
   inherited Destroy;
 end;
 
@@ -156,17 +156,17 @@ end;
 
 function TMailBase.GetAttachments: TStringList;
 begin
-  Result := FAttachment;
+  Result := FAttachments;
 end;
 
-function TMailBase.GetBccRecipient: TStringList;
+function TMailBase.GetBccRecipients: TStringList;
 begin
-  Result := FBccRecipient;
+  Result := FBccRecipients;
 end;
 
-function TMailBase.GetCcRecipient: TStringList;
+function TMailBase.GetCcRecipients: TStringList;
 begin
-  Result := FCcRecipient;
+  Result := FCcRecipients;
 end;
 
 function TMailBase.GetFromAddress: string;
@@ -184,9 +184,9 @@ begin
   Result := FHost;
 end;
 
-function TMailBase.GetMessage: TStringList;
+function TMailBase.GetMessages: TStringList;
 begin
-  Result := FMessage;
+  Result := FMessages;
 end;
 
 function TMailBase.GetPassword: string;
@@ -222,9 +222,9 @@ begin
   Result := FSubject;
 end;
 
-function TMailBase.GetToRecipient: TStringList;
+function TMailBase.GetToRecipients: TStringList;
 begin
-  Result := FToRecipient;
+  Result := FToRecipients;
 end;
 
 function TMailBase.GetUsername: string;
@@ -265,13 +265,13 @@ end;
 
 function TMailBase.Message(const AValue: string): IMail;
 begin
-  FMessage.Add(AValue);
+  FMessages.Add(AValue);
   Result := Self;
 end;
 
-function TMailBase.Message(const AValue: TStringList): IMail;
+function TMailBase.Message(const AValues: TStringList): IMail;
 begin
-  FMessage.Text := AValue.Text;
+  FMessages.Text := AValues.Text;
   Result := Self;
 end;
 
@@ -307,7 +307,7 @@ end;
 
 function TMailBase.ToRecipient(const AAddress: string): IMail;
 begin
-  FToRecipient.Add(AAddress);
+  FToRecipients.Add(AAddress);
   Result := Self;
 end;
 

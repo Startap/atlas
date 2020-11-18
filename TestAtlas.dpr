@@ -16,7 +16,11 @@ uses
   TesteSQLBuilder.Insert in 'Testes\SQLBuilder\TesteSQLBuilder.Insert.pas',
   TesteObjetoConexao in 'Testes\TesteObjetoConexao.pas',
   Types.Conexao in 'Source\Objetos\Types.Conexao.pas',
-  SQLBuilder in 'Source\SQLBuilder\SQLBuilder.pas';
+  SQLBuilder in 'Source\SQLBuilder\SQLBuilder.pas',
+  TesteMail.Indy in 'Testes\Mail\TesteMail.Indy.pas',
+  MailInterface in 'Source\Mail\MailInterface.pas',
+  MailBase in 'Source\Mail\MailBase.pas',
+  Mail.Indy in 'Source\Mail\Mail.Indy.pas';
 
 var
   runner : ITestRunner;

@@ -33,7 +33,10 @@ requires
   rtl,
   vcl,
   FireDAC,
-  dbrtl;
+  dbrtl,
+  IndySystem,
+  IndyProtocols,
+  IndyCore;
 
 contains
   ValorPor in 'Source\ValorPor.pas',
@@ -41,6 +44,7 @@ contains
   Conexao in 'Source\Objetos\Conexao.pas',
   Types.Conexao in 'Source\Objetos\Types.Conexao.pas',
   MailInterface in 'Source\Mail\MailInterface.pas',
-  MailBase in 'Source\Mail\MailBase.pas';
+  MailBase in 'Source\Mail\MailBase.pas',
+  Mail.Indy in 'Source\Mail\Mail.Indy.pas';
 
 end.
